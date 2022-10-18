@@ -1,4 +1,4 @@
 
 
-def open_window():
+def open_window(text):
     pass

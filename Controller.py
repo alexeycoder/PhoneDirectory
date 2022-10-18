@@ -21,5 +21,5 @@ def change_contact():
 def delete_contact():
     pass
 
-def saerch_contact():
+def search_contact():
     pass

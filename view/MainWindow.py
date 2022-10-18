@@ -1,3 +1,4 @@
+from functools import partial
 from turtle import width
 import Controller
 import tkinter as tk
@@ -11,19 +12,20 @@ def main_window():
     first_window.title('Телефонный справочник')
     first_window.geometry(size_window)
     first_window.wm_attributes('-topmost', 1)
+    # first_window.focus_set()
 
     button_show = tk.Button(text = 'Показать контакты')
-    button_show.grid(column=0, row=1, sticky='s')
+    button_show.grid(column=0, row=1, stick='ew')
     button_open_file = tk.Button(text = 'Открыть файл', width=20)
-    button_open_file.grid(column=0, row=1, sticky='S')
+    button_open_file.grid(column=0, row=2, stick='s')
     button_save_file = tk.Button(text = 'Сохранить файл', width=20)
-    button_save_file.grid(column=0, row=2, sticky='S')
+    button_save_file.grid(column=0, row=3, stick='s')
     button_add_contact = tk.Button(text = 'Добавить контакт', width=20, command=AddContactWindow.open_window)
-    button_add_contact.grid(column=0, row=3, sticky='S')
-    button_change_contact = tk.Button(text = 'Изменить контакт', width=20, command=ChangeContactWindow.open_window)
-    button_change_contact.grid(column=0, row=4, sticky='S')
+    button_add_contact.grid(column=0, row=4, stick='s')
+    button_change_contact = tk.Button(text = 'Изменить контакт', width=20, command=partial(ChangeContactWindow.open_window, text_contact ))
+    button_change_contact.grid(column=0, row=5, stick='s')
     button_delete_contact = tk.Button(text = 'Удалить контакт', width=20)
-    button_delete_contact.grid(column=0, row=5, sticky='S')
+    button_delete_contact.grid(column=0, row=6, stick='s')
     lable = tk.Label(text = 'Введите имя:')
     lable.place(x = 2, y = 180)
     entry = tk.Entry(width=25)
