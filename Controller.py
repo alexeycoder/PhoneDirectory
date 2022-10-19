@@ -12,15 +12,15 @@ def open_file():
     Model.open_file()
     
 
-def show_contacts():
+def show_contacts(contacts_user = Model.contacts_user):
     MainWindow.main_table.delete(*MainWindow.main_table.get_children())
-    for i in Model.contacts_user:
+    for i in contacts_user:
         i = [i.contact_id, i.name, i.phone, i.comment]
-        MainWindow.main_table.insert('', 0, values=i)
+        MainWindow.main_table.insert('', 'end', values=i)
     
 
 def save_contacts():
-    pass
+    Model.save_contacts()
 
 def add_contact():
     pass
@@ -31,5 +31,7 @@ def change_contact():
 def delete_contact():
     pass
 
-def search_contact():
-    pass
+def search_contact(search_text):
+    temp_list = [i for i in Model.contacts_user if search_text in i.name.lower()]
+    show_contacts(temp_list)
+

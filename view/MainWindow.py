@@ -1,13 +1,14 @@
 from functools import partial
 from turtle import width
+
 import Controller
 import tkinter as tk
 from tkinter import Frame, ttk
 from view import AddContactWindow, ChangeContactWindow, Geometry
 
 size_window = '630x420+500+250'
-main_table: ttk.Treeview
 contact_list = []
+# search_text = ''
 
 def get_contact(event):
     global contact_list
@@ -17,6 +18,7 @@ def get_contact(event):
 
 def main_window():
     global contact_list
+    global search_text
     first_window = tk.Tk()
     first_window.title('Телефонный справочник')
     first_window.geometry(size_window)
@@ -27,7 +29,7 @@ def main_window():
     button_show.grid(column=0, row=1, stick='ew')
     button_open_file = tk.Button(text = 'Открыть файл', width=20, command=Controller.open_file)
     button_open_file.grid(column=0, row=2, stick='s')
-    button_save_file = tk.Button(text = 'Сохранить файл', width=20)
+    button_save_file = tk.Button(text = 'Сохранить файл', width=20, command=Controller.save_contacts)
     button_save_file.grid(column=0, row=3, stick='s')
     button_add_contact = tk.Button(text = 'Добавить контакт', width=20, command=AddContactWindow.open_window)
     button_add_contact.grid(column=0, row=4, stick='s')
@@ -37,8 +39,15 @@ def main_window():
     button_delete_contact.grid(column=0, row=6, stick='s')
     lable = tk.Label(text = 'Введите имя:')
     lable.place(x = 2, y = 180)
+
+    def search_contact(event):
+        search_text = entry.get()
+        Controller.search_contact(search_text)
+
     entry = tk.Entry(width=25)
+    entry.bind('<KeyRelease>', search_contact)
     entry.place(x = 2, y = 200)
+
     button_search_contact = tk.Button(text = 'Поиск', width=20)
     button_search_contact.place(x = 2, y = 220)
 
