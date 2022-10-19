@@ -1,4 +1,4 @@
+from view import MainWindow
 
-
-def open_window(text):
-    pass
+def open_window():
+    print(MainWindow.contact_list)
