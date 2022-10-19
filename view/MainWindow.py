@@ -6,6 +6,8 @@ import tkinter as tk
 from tkinter import Frame, ttk
 from view import AddContactWindow, ChangeContactWindow, Geometry
 
+root: tk.Tk = None
+
 size_window = '630x420+500+250'
 contact_list = []
 # search_text = ''
@@ -16,10 +18,15 @@ def get_contact(event):
     contact_list = [i for i in main_table.item(items, option="values")]
 
 
+
 def main_window():
     global contact_list
     global search_text
     first_window = tk.Tk()
+
+    global root
+    root = first_window
+
     first_window.title('Телефонный справочник')
     #first_window.geometry(size_window)
     first_window.wm_attributes('-topmost', 1)
@@ -33,9 +40,9 @@ def main_window():
     button_save_file.grid(column=0, row=3, sticky='we')
     button_add_contact = tk.Button(text = 'Добавить контакт', width=20, command=AddContactWindow.open_window)
     button_add_contact.grid(column=0, row=4, sticky='we')
-    button_change_contact = tk.Button(text = 'Изменить контакт', width=20, command=ChangeContactWindow.open_window)
+    button_change_contact = tk.Button(text = 'Изменить контакт', width=20, command=Controller.change_contact)
     button_change_contact.grid(column=0, row=5, sticky='we')
-    button_delete_contact = tk.Button(text = 'Удалить контакт', width=20)
+    button_delete_contact = tk.Button(text = 'Удалить контакт', width=20, command=Controller.delete_contact)
     button_delete_contact.grid(column=0, row=6, sticky='we')
     lable = tk.Label(text = 'Введите имя:')
     lable.grid(column=0, row=7, pady=(50,0), sticky='w')
