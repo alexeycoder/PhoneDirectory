@@ -15,7 +15,6 @@ def get_contact(event):
     contact_list = [i for i in main_table.item(items, option="values")]
 
 
-
 def main_window():
     global contact_list
     first_window = tk.Tk()
@@ -32,7 +31,7 @@ def main_window():
     button_save_file.grid(column=0, row=3, stick='s')
     button_add_contact = tk.Button(text = 'Добавить контакт', width=20, command=AddContactWindow.open_window)
     button_add_contact.grid(column=0, row=4, stick='s')
-    button_change_contact = tk.Button(text = 'Изменить контакт', width=20, command=partial(ChangeContactWindow.open_window))
+    button_change_contact = tk.Button(text = 'Изменить контакт', width=20, command=ChangeContactWindow.open_window)
     button_change_contact.grid(column=0, row=5, stick='s')
     button_delete_contact = tk.Button(text = 'Удалить контакт', width=20)
     button_delete_contact.grid(column=0, row=6, stick='s')
@@ -55,9 +54,6 @@ def main_window():
         if header != 'id':
             main_table.column(header, width=150)
     main_table.pack()
-
-
-
     main_table.bind("<<TreeviewSelect>>", get_contact)
 
     tk.mainloop()
