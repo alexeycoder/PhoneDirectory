@@ -8,11 +8,20 @@ class ChangeContactDialog(ModalWindow):
         self.contact = contact
         super().__init__(parent, title)
 
-
     def _compose(self):
+        # local methods:
         def set_text(entry: tk.Entry, text):
             entry.delete(0, tk.END)
             entry.insert(0, text)
+
+        def apply_changes_and_close():
+            nonlocal txtbox_name
+            nonlocal txtbox_phone
+            nonlocal txtbox_comment
+            self.contact.name = txtbox_name.get()
+            self.contact.phone = txtbox_phone.get()
+            self.contact.comment = txtbox_comment.get()
+            self._dispose()
 
         contact = self.contact
         text_header = f'Редактирование контакта ID: {contact.contact_id}'
@@ -47,7 +56,7 @@ class ChangeContactDialog(ModalWindow):
 
         # OK Cancel:
 
-        btn_ok = tk.Button(self, text='Изменить')
+        btn_ok = tk.Button(self, text='Сохранить', command=apply_changes_and_close)
         btn_ok.grid(column=0, row=4, padx=10, pady=(30, 10), sticky='e')
 
         btn_cancel = tk.Button(self, text='Отменить')

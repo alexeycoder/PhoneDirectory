@@ -64,6 +64,7 @@ def delete_contact():
     Model.contacts_user.remove(contact)
     show_contacts()
 
+
 def search_contact(search_text):
     temp_list = [
         i for i in Model.contacts_user if search_text in i.name.lower()]
