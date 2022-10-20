@@ -1,6 +1,7 @@
 import tkinter as tk
 from view.abstract.modal_window import ModalWindow
 from Types.Contact import Contact
+from view import Geometry
 
 
 class ChangeContactDialog(ModalWindow):
@@ -14,7 +15,7 @@ class ChangeContactDialog(ModalWindow):
             entry.delete(0, tk.END)
             entry.insert(0, text)
 
-        def apply_changes_and_close():
+        def apply_changes_and_close(event=None):
             nonlocal txtbox_name
             nonlocal txtbox_phone
             nonlocal txtbox_comment
@@ -22,6 +23,12 @@ class ChangeContactDialog(ModalWindow):
             self.contact.phone = txtbox_phone.get()
             self.contact.comment = txtbox_comment.get()
             self._dispose()
+
+        width = 280
+        height = 230
+        size_window = f'{width}x{height}+{Geometry.get_width(self, width)}+{Geometry.get_height(self, height)}'
+        self.geometry(size_window)
+        self.resizable(False, False)
 
         contact = self.contact
         text_header = f'Редактирование контакта ID: {contact.contact_id}'
@@ -56,8 +63,17 @@ class ChangeContactDialog(ModalWindow):
 
         # OK Cancel:
 
-        btn_ok = tk.Button(self, text='Сохранить', command=apply_changes_and_close)
+        btn_ok = tk.Button(self, text='Сохранить',
+                           command=apply_changes_and_close)
         btn_ok.grid(column=0, row=4, padx=10, pady=(30, 10), sticky='e')
+        self.bind('<Return>', apply_changes_and_close)
+        self.bind('<KP_Enter>', apply_changes_and_close)
 
-        btn_cancel = tk.Button(self, text='Отменить')
+        btn_cancel = tk.Button(self, text='Отменить',
+                               command=self._dispose)
         btn_cancel.grid(column=1, row=4, padx=10, pady=(30, 10), sticky='w')
+
+
+
+
+

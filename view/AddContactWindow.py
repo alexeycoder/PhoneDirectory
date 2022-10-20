@@ -6,6 +6,7 @@ from Types import Contact
 import Controller
 import Model
 from Model import contacts_user
+from view import Geometry
 
 add_window: tk.Tk
 change_window: tk.Tk
@@ -23,7 +24,10 @@ def open_window_add():
 
     add_window = tk.Toplevel()
     add_window.title('Создать контакт')
-    add_window.geometry(size_window_add)
+    width = 310
+    height = 100
+    size_window = f'{width}x{height}+{Geometry.get_width(add_window, width)}+{Geometry.get_height(add_window, height)}'
+    add_window.geometry(size_window)
     add_window.resizable(RESIZEBLE, RESIZEBLE)
     add_window.wm_attributes('-topmost', 1)
     add_window.columnconfigure(index=0, weight=50)
