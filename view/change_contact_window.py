@@ -62,6 +62,5 @@ class ChangeContactDialog(ModalWindow):
         self.bind('<Return>', apply_changes_and_close)
         self.bind('<KP_Enter>', apply_changes_and_close)
 
-        btn_cancel = tk.Button(self, text='Отменить',
-                               command=lambda: self._dispose)
+        btn_cancel = tk.Button(self, text='Отменить', command=self._dispose)
         btn_cancel.grid(column=1, row=4, padx=10, pady=(30, 10), sticky='w')

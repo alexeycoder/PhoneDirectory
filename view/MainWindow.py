@@ -6,7 +6,7 @@ import Controller
 import tkinter as tk
 from tkinter import Frame, ttk
 from view import AddContactWindow, Geometry
-
+from view.contact_context_menu import ContactContextMenu
 
 contact_list = []
 # search_text = ''
@@ -69,5 +69,7 @@ def main_window():
             main_table.column(header, width=150)
     main_table.pack()
     # main_table.bind("<<TreeviewSelect>>", get_contact)
+
+    context_menu = ContactContextMenu(main_table)
 
     tk.mainloop()
