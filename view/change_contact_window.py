@@ -1,7 +1,7 @@
 import tkinter as tk
 from view.abstract.modal_window import ModalWindow
-from Types.Contact import Contact
-from view import Geometry
+from entities.contact import Contact
+from view import geometry
 
 
 class ChangeContactDialog(ModalWindow):
@@ -26,7 +26,7 @@ class ChangeContactDialog(ModalWindow):
 
         width = 280
         height = 230
-        size_window = f'{width}x{height}+{Geometry.get_width(self, width)}+{Geometry.get_height(self, height)}'
+        size_window = f'{width}x{height}+{geometry.get_width(self, width)}+{geometry.get_height(self, height)}'
         self.geometry(size_window)
         self.resizable(False, False)
 
@@ -72,8 +72,3 @@ class ChangeContactDialog(ModalWindow):
         btn_cancel = tk.Button(self, text='Отменить',
                                command=self._dispose)
         btn_cancel.grid(column=1, row=4, padx=10, pady=(30, 10), sticky='w')
-
-
-
-
-

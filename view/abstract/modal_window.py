@@ -1,13 +1,10 @@
 import tkinter as tk
 
 
-
-
 class ModalWindow(tk.Toplevel):
     def __init__(self, parent: tk.BaseWidget, title):
         tk.Toplevel.__init__(self, parent)
         self.transient(parent)
-
 
         if title:
             self.title(title)
@@ -15,7 +12,6 @@ class ModalWindow(tk.Toplevel):
         self.parent = parent
         self._compose()
         self.__make_modal()
-
 
     def _compose(self):
         pass

@@ -1,18 +1,14 @@
-
 import tkinter as tk
 from functools import partial
-
-from Types import Contact
-import Controller
-import Model
-from Model import contacts_user
-from view import Geometry
+import controller
+from model import contacts_user
+from view import geometry
 
 add_window: tk.Tk
 change_window: tk.Tk
 add_entry = []
 change_entry = []
-temp: Contact.Contact
+#temp: contact.Contact
 size_window_add = '310x100+650+350'
 
 
@@ -26,7 +22,7 @@ def open_window_add():
     add_window.title('Создать контакт')
     width = 310
     height = 100
-    size_window = f'{width}x{height}+{Geometry.get_width(add_window, width)}+{Geometry.get_height(add_window, height)}'
+    size_window = f'{width}x{height}+{geometry.get_width(add_window, width)}+{geometry.get_height(add_window, height)}'
     add_window.geometry(size_window)
     add_window.resizable(RESIZEBLE, RESIZEBLE)
     add_window.wm_attributes('-topmost', 1)
@@ -44,7 +40,8 @@ def open_window_add():
     for i, entry in enumerate(add_entry):
         add_entry[i].grid(column=1, row=i)
 
-    add_button = tk.Button(add_window, text='Создать', command=partial(Controller.add_contact, add_entry))
+    add_button = tk.Button(add_window, text='Создать',
+                           command=partial(controller.add_contact, add_entry))
     add_button.grid(column=1, row=3)
 
     add_window.mainloop()

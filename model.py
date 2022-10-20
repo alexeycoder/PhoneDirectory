@@ -1,7 +1,5 @@
-
 from tkinter.filedialog import askopenfilename, asksaveasfilename
-
-from Types.Contact import Contact
+from entities.contact import Contact
 
 
 contacts_user = []

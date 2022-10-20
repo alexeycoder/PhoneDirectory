@@ -1,8 +1,8 @@
 class Contact:
-    contact_id:str
-    name:str
-    phone:str
-    comment:str
+    contact_id: str
+    name: str
+    phone: str
+    comment: str
 
     def __init__(self, contact_id: str, name: str, phone: str, comment: str):
         self.contact_id = contact_id

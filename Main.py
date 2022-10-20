@@ -1,3 +1,0 @@
-import Controller
-
-Controller.run()
