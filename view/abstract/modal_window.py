@@ -1,5 +1,6 @@
 import tkinter as tk
 
+
 class ModalWindow(tk.Toplevel):
     def __init__(self, parent: tk.BaseWidget, title):
         tk.Toplevel.__init__(self, parent)
@@ -18,7 +19,7 @@ class ModalWindow(tk.Toplevel):
     def __make_modal(self):
         self.parent.update_idletasks()
         self.protocol('WM_DELETE_WINDOW', self._dispose)
-        self.bind('<Escape>', self._dispose)
+        self.bind('<Escape>', lambda e: self._dispose())
         self.focus_set()
         self.wait_visibility()
         self.grab_set()
