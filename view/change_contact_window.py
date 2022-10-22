@@ -1,7 +1,8 @@
 import tkinter as tk
+from tkinter import ttk
+from tkinter import font
 from view.abstract.modal_window import ModalWindow
 from entities.contact import Contact
-from view import geometry
 
 
 class ChangeContactDialog(ModalWindow):
@@ -24,18 +25,23 @@ class ChangeContactDialog(ModalWindow):
             self.contact.comment = txtbox_comment.get()
             self._dispose()
 
-        width = 280
-        height = 230
-        size_window = f'{width}x{height}+{geometry.get_width(self, width)}+{geometry.get_height(self, height)}'
-        self.geometry(size_window)
-        self.resizable(False, False)
-
         contact = self.contact
         text_header = f'Редактирование контакта ID: {contact.contact_id}'
 
+        base_font = font.nametofont('TkDefaultFont')
+        base_font_family = base_font.actual('family')
+        base_font_size = int(base_font.actual('size'))
+        header_font = font.Font(family=base_font_family,
+                                size=base_font_size+1, weight='bold')
+
+        # grid config:
+
+        self.grid_columnconfigure(index=0, weight=60)
+        self.grid_columnconfigure(index=1, weight=200)
+
         # labels - left column:
 
-        lbl_header = tk.Label(self, text=text_header, font='Arial 14')
+        lbl_header = tk.Label(self, text=text_header, font=header_font)
         lbl_header.grid(column=0, columnspan=2, row=0, pady=20)
 
         lbl_name = tk.Label(self, text='Имя:')
