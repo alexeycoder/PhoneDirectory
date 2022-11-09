@@ -1,8 +1,8 @@
 import tkinter as tk
 from functools import partial
+
 import controller
 from view import helpers
-
 
 add_window: tk.Tk
 add_entry = []
